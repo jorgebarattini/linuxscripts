@@ -1,0 +1,23 @@
+#Install Wordpress in LXC container usinb Ubuntu 18 template behind a reverse proxy
+#Replace mydomain.com with your domain
+
+apt-get update
+apt install -y nginx mysql-server software-properties-common
+add-apt-repository ppa:ondrej/php -y
+apt update
+apt install -y php7.4-cli php7.4-fpm php7.4-mysql php7.4-json php7.4-opcache php7.4-mbstring php7.4-xml php7.4-gd php7.4-curl
+cd /tmp/
+wget https://wordpress.org/latest.tar.gz
+tar xzf latest.tar.gz
+mv wordpress/* /var/www/html/
+cd /var/www/html/
+rm index.nginx-debian.html
+rm /etc/nginx/sites-enabled/default
+wget "https://raw.githubusercontent.com/jorgebarattini/linuxscripts/master/wp-install-nginxconf" -O default -q
+sed -i 's/domain-com/mydomain.com/g' default
+/etc/init.d/nginx restart
+mysql -u root -p
+CREATE DATABASE wpdatabase CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+GRANT ALL ON wpdatabase.* TO wpuser @'localhost' IDENTIFIED BY 'wppassword123';
+FLUSH PRIVILEGES;
+EXIT;
