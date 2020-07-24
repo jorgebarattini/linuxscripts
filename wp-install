@@ -12,7 +12,7 @@ tar xzf latest.tar.gz
 mv wordpress/* /var/www/html/
 cd /var/www/html/
 rm index.nginx-debian.html
-cd /etc/nginx/sites-enabled/
+cd /etc/nginx/sites-available/
 rm default
 wget "https://raw.githubusercontent.com/jorgebarattini/linuxscripts/master/wp-install-nginxconf" -O default -q
 sed -i 's/domain-com/mydomain.com/g' default
