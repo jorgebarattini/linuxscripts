@@ -28,7 +28,7 @@ EXIT;
 
 #### INSTALL WORDPRESS USING WEB ####
 
-### ADD TO wp-config.php ###
+### ADD TO wp-config.php before MYSQL configuration###
 
 // Handle reverse proxy, passing the IP to the server.
 // This is used by some plugins to fetch the user's IP.
