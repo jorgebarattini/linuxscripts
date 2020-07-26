@@ -17,6 +17,10 @@ rm default
 wget "https://raw.githubusercontent.com/jorgebarattini/linuxscripts/master/wp-install-nginxconf" -O default -q
 sed -i 's/domain-com/mydomain.com/g' default
 /etc/init.d/nginx restart
+chown -R www-data:nogroup /var/www/html
+find /var/www/html/ -type d -exec chmod 750 {} \;
+find /var/www/html/ -type f -exec chmod 640 {} \;
+chmod 440 /var/www/html/wp-config.php
 mysql -u root -p
 CREATE DATABASE wpdatabase CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 GRANT ALL ON wpdatabase.* TO wpuser @'localhost' IDENTIFIED BY 'wppassword123';
