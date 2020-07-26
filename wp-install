@@ -5,7 +5,7 @@ apt-get update
 apt install -y nginx mysql-server software-properties-common
 add-apt-repository ppa:ondrej/php -y
 apt update
-apt install -y php7.4-cli php7.4-fpm php7.4-mysql php7.4-json php7.4-opcache php7.4-mbstring php7.4-xml php7.4-gd php7.4-curl
+apt install -y php7.4-cli php7.4-fpm php7.4-mysql php7.4-json php7.4-opcache php7.4-mbstring php7.4-xml php7.4-gd php7.4-curl php-imagick php7.4-zip
 cd /tmp/
 wget https://wordpress.org/latest.tar.gz
 tar xzf latest.tar.gz
