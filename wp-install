@@ -20,7 +20,6 @@ sed -i 's/domain-com/mydomain.com/g' default
 chown -R www-data:nogroup /var/www/html
 find /var/www/html/ -type d -exec chmod 750 {} \;
 find /var/www/html/ -type f -exec chmod 640 {} \;
-chmod 440 /var/www/html/wp-config.php
 mysql -u root -p
 CREATE DATABASE wpdatabase CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 GRANT ALL ON wpdatabase.* TO wpuser @'localhost' IDENTIFIED BY 'wppassword123';
@@ -46,3 +45,8 @@ define('WP_HOME','https://www.mydomain.com');
 define('WP_SITEURL','https://www.mydomain.com');
 
 ### END ADD TO wp-config.php ###
+
+#### MORE COMMANDS ####
+
+chmod 440 /var/www/html/wp-config.php
+
