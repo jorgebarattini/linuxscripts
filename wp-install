@@ -26,3 +26,23 @@ CREATE DATABASE wpdatabase CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 GRANT ALL ON wpdatabase.* TO wpuser @'localhost' IDENTIFIED BY 'wppassword123';
 FLUSH PRIVILEGES;
 EXIT;
+
+#### INSTALL WORDPRESS USING WEB ####
+
+### ADD TO wp-config.php ###
+
+// Handle reverse proxy, passing the IP to the server.
+// This is used by some plugins to fetch the user's IP.
+if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+  $ips = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+  $_SERVER['REMOTE_ADDR'] = $ips[0];
+}
+
+if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+        $_SERVER['HTTPS'] = 'on';
+}
+
+define('WP_HOME','https://www.mydomain.com');
+define('WP_SITEURL','https://www.mydomain.com');
+
+### END ADD TO wp-config.php ###
